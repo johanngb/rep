@@ -8,11 +8,12 @@ RUN apt install -y --no-install-recommends apt-utils dialog
 RUN echo "root:docker" | chpasswd
 RUN adduser --disabled-password --gecos "" docker
 
-RUN apt install -y lsb-release ssh nano libssl-dev libcurl4-openssl-dev screen net-tools ifupdown iproute2 curl locales
-
+RUN apt install -y locales
 RUN locale-gen en_US.UTF-8
 RUN update-locale LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
+
+RUN apt install -y curl lsb-release ssh nano libssl-dev libcurl4-openssl-dev
 
 RUN apt install -y python-is-python3 python3 python3-pip
 RUN pip3 install --upgrade pip
