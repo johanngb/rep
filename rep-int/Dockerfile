@@ -35,13 +35,14 @@ RUN rm shiny-server-1.5.13.944-amd64.deb
 RUN mkdir /dockerstartup
 RUN git clone "https://github.com/johanngb/rep.git"
 RUN cp -r rep/rep-int/dockerstartup/* /dockerstartup
+RUN rm -rf rep
 RUN chmod +x /dockerstartup/*.sh
-WORKDIR /dockerstartup
 
 ### Clean up
 RUN apt clean
 RUN rm -rf /root/.cache
-RUN rm -rf rep
+WORKDIR /dockerstartup
+
 
 ENV DEBIAN_FRONTEND teletype
 
