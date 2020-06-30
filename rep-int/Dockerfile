@@ -41,6 +41,7 @@ RUN chmod +x /dockerstartup/*.sh
 ### Clean up
 RUN apt clean
 RUN rm -rf /root/.cache
+RUN rm -rf /tmp/*
 WORKDIR /dockerstartup
 
 
