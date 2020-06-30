@@ -33,7 +33,7 @@ RUN rm shiny-server-1.5.13.944-amd64.deb
 
 ### Startup and Configuration
 RUN mkdir /dockerstartup
-RUN git clone "git@github.com:johanngb/rep.git"
+RUN git clone "https://github.com/johanngb/rep.git"
 RUN cp -r rep/rep-int/dockerstartup/* /dockerstartup
 RUN chmod +x /dockerstartup/*.sh
 WORKDIR /dockerstartup
