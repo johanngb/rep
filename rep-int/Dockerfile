@@ -16,9 +16,9 @@ RUN pip install jupyter
 RUN pip install jupyterlab
 RUN pip install jupytext
 RUN jupyter lab build
-RUN apt install libunwind8
+RUN apt install -y libunwind-dev
 RUN R -e 'install.packages("IRkernel")'
-RUN runuser - docker --command='R -e "IRkernel::installspec()"'
+RUN runuser - rep --command='R -e "IRkernel::installspec()"'
 
 ### R Studio
 RUN wget "https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb"
@@ -33,7 +33,7 @@ RUN gdebi --n shiny-server-1.5.16.958-amd64.deb
 RUN rm shiny-server-1.5.16.958-amd64.deb
 
 ### Startup and Configuration
-RUN mkdir /startup
+RUN rm -rf /startup; mkdir /startup
 RUN git clone "https://github.com/johanngb/rep.git"
 RUN cp -r rep/rep-int/startup/* /startup
 RUN rm -rf rep
