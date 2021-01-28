@@ -1,0 +1,2 @@
+\033[1;36mTo quit, type\033[0;33m exit\033[1;36m and press enter.
+\e[0m   
