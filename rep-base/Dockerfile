@@ -32,7 +32,10 @@ RUN pip install numpy scipy matplotlib pandas
 
 ### Startup and Configuration
 RUN echo "root:rep" | chpasswd
-RUN adduser --disabled-password --gecos "" rep
+RUN adduser --disabled-password --gecos "" rep 
+RUN rm /home/rep/.bashrc /home/rep/.bash_logout /home/rep/.profile
+RUN echo 'if [ ! -f ~/.profile ]; then . /etc/skel/.profile; fi' >> /etc/profile
+RUN echo 'if [ ! -f ~/.bashrc ]; then . /etc/skel/.bashrc; fi' >> /etc/profile
 RUN mkdir /startup
 RUN git clone "https://github.com/johanngb/rep.git"
 RUN cp -r rep/rep-base/startup/* /startup

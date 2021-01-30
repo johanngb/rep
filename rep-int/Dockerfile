@@ -18,7 +18,7 @@ RUN pip install jupytext
 RUN jupyter lab build
 RUN apt install -y libunwind-dev
 RUN R -e 'install.packages("IRkernel")'
-RUN runuser - rep --command='R -e "IRkernel::installspec()"'
+RUN R -e "IRkernel::installspec(user=FALSE)"
 
 ### R Studio
 RUN wget "https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb"
@@ -31,8 +31,10 @@ RUN R -e 'install.packages(c("shiny"))'
 RUN wget "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb"
 RUN gdebi --n shiny-server-1.5.16.958-amd64.deb
 RUN rm shiny-server-1.5.16.958-amd64.deb
+ENV SHINYDIR /home/rep/
 
 ### Startup and Configuration
+RUN apt install -y gettext-base
 RUN rm -rf /startup; mkdir /startup
 RUN git clone "https://github.com/johanngb/rep.git"
 RUN cp -r rep/rep-int/startup/* /startup
