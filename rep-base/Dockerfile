@@ -27,7 +27,7 @@ RUN apt install -y r-base r-base-dev
 
 ### Packages
 RUN apt install -y git dos2unix pdftk pandoc pandoc-citeproc libxml2-dev
-RUN R -e 'install.packages(c("tidyverse", "devtools", "reticulate"))'
+RUN R -e 'install.packages(c("tidyverse", "devtools", "reticulate", "renv"))'
 RUN pip install numpy scipy matplotlib pandas
 
 ### Startup and Configuration
